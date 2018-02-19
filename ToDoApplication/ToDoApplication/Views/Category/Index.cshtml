@@ -1,0 +1,35 @@
+﻿@model ToDoApplication.ViewModels.Category.CategoryIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h2>@Model.CurrentDateTime.ToString("yyyy-mm-dd hh:mm:ss")</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Categories) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", 
+            new { id = item.Id }, 
+            new {onclick = "return confirm('Are you sure you want to delete this category?');"})|
+            @Html.ActionLink("Todos", "Index", "Todo", new { categoryId = item.Id }, null)
+        </td>
+    </tr>
+}
+
+</table>

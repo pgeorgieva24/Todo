@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ToDoApplication.Models.Todo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",new { categoryId=(int)ViewData["categoryId"] })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDone)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDone)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id, categoryId = item.CategoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure you want to delete this category?');" })
+        </td>
+    </tr>
+}
+
+</table>
